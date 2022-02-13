@@ -1,6 +1,7 @@
 import { ReactNode } from 'react';
-import styled from 'styled-components';
-import { COLORS } from '../constant';
+import { Link } from 'react-router-dom';
+import styled, { css } from 'styled-components';
+import { COLORS, QUERIES } from '../constant';
 
 type StyledButtonProps = {
   secondary?: boolean;
@@ -8,61 +9,76 @@ type StyledButtonProps = {
 
 const StyledButton = styled.button<StyledButtonProps>`
   position: relative;
+  ${({ secondary }) =>
+    secondary &&
+    css`
+      margin-left: 56px;
+    `}
   padding: 24px 32px;
-  background-color: ${({ secondary }) => secondary ? COLORS.primary : COLORS.secendary};
+  background-color: ${({ secondary }) =>
+    secondary ? COLORS.primary : COLORS.secendary};
   font-size: 2rem;
   font-weight: 800;
   border: none;
   color: ${COLORS.white};
   cursor: pointer;
-  transition: background-color .4s;
+  transition: background-color 0.4s;
 
-  &:hover {
-    background-color: ${({ secondary }) => secondary ? COLORS.secendary : COLORS.primary};
+  a {
+    color: ${COLORS.white};
+    text-decoration: none;
   }
 
-  &:hover span {
-    background-color: ${({ secondary }) => secondary ? COLORS.primary : COLORS.secendary};
+  @media ${QUERIES.laptopAndUp} {
+    &:hover {
+      background-color: ${({ secondary }) =>
+        secondary ? COLORS.secendary : COLORS.primary};
+    }
+
+    &:hover span {
+      background-color: ${({ secondary }) =>
+        secondary ? COLORS.primary : COLORS.secendary};
+    }
   }
 
   span {
-    --offset: 56px;
     position: absolute;
     display: grid;
     place-items: center;
-    background-color: ${({ secondary }) => secondary ? COLORS.secendary : COLORS.primary};
+    background-color: ${({ secondary }) =>
+      secondary ? COLORS.secendary : COLORS.primary};
     top: 0;
-    right: 0;
+    right: ${({ secondary }) => (secondary ? 'auto' : 0)};
+    left: ${({ secondary }) => (secondary ? 0 : 'auto')};
     height: 100%;
-    width: var(--offset);
-    transform: translateX(var(--offset));
-    transition: background-color .4s;
+    width: 56px;
+    transform: ${({ secondary }) =>
+      secondary ? 'translateX(-56px)' : 'translateX(56px)'};
+    transition: background-color 0.4s;
   }
-  
 `;
 
 type ButtonProps = {
   children: ReactNode;
   secondary?: boolean;
+  path: string;
 };
 
 function Button({
   children,
   secondary = false,
+  path,
   ...attributes
 }: ButtonProps): JSX.Element {
   return (
-    <StyledButton
-      {...attributes}
-      secondary={secondary}
-    >
-      {children}
+    <StyledButton {...attributes} secondary={secondary}>
+      <Link to={path}>{children}</Link>
       <span>
-        { secondary ? (
-           <img src="assets/icon-arrow-left.svg" alt="" />
+        {secondary ? (
+          <img src="assets/icon-arrow-left.svg" alt="" />
         ) : (
           <img src="assets/icon-arrow-right.svg" alt="" />
-        )}       
+        )}
       </span>
     </StyledButton>
   );

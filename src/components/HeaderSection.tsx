@@ -30,7 +30,7 @@ const Title = styled.h1`
   line-height: 5.5rem;
 `;
 
-function HeaderSection():JSX.Element {
+function HeaderSection(): JSX.Element {
   return (
     <header>
       <ImageWarppar>
@@ -38,13 +38,15 @@ function HeaderSection():JSX.Element {
       </ImageWarppar>
       <ContentWrapper>
         <Title>modern art gallery</Title>
-        <Description>The arts in the collection of the Modern Art Gallery all started from a spark of inspiration. Will these pieces inspire you? Visit us and find out.</Description>
-        <Button>
-          OUR LOCATION
-        </Button>
+        <Description>
+          The arts in the collection of the Modern Art Gallery all started from
+          a spark of inspiration. Will these pieces inspire you? Visit us and
+          find out.
+        </Description>
+        <Button path="location">OUR LOCATION</Button>
       </ContentWrapper>
-  </header>
-  )
+    </header>
+  );
 }
 
 export default HeaderSection;

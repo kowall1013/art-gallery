@@ -8,6 +8,11 @@ const GlobalStyles = createGlobalStyle`
   margin: 0;
   padding: 0;
 }
+#map {
+  height: 550px;
+  position: relative;
+  z-index: -999;
+}
 html, body, #root {
   height: 100%;
   font-size: 10px;

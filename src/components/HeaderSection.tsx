@@ -1,18 +1,23 @@
 import styled from 'styled-components';
 import Button from '../components/Button';
-import { COLORS } from '../constant';
+import { COLORS, QUERIES } from '../constant';
+import Image from './Image';
 
-const ImageWarppar = styled.div`
-  margin-bottom: 32px;
-
-  img {
-    display: block;
-    width: 100%;
+const HeaderWrapper = styled.header`
+   @media ${QUERIES.tabletAndUp} {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
   }
 `;
 
 const ContentWrapper = styled.article`
   padding: 0 16px;
+
+  @media ${QUERIES.tabletAndUp} {
+    margin-top: 145px;
+    transform: translateX(-6liv0px);
+    min-width: 340px;
+  }
 `;
 
 const Description = styled.p`
@@ -31,11 +36,15 @@ const Title = styled.h1`
 `;
 
 function HeaderSection(): JSX.Element {
+
   return (
-    <header>
-      <ImageWarppar>
-        <img src="assets/mobile/image-hero.jpg" alt="" />
-      </ImageWarppar>
+    <HeaderWrapper>
+      <Image 
+        mobileSrc='assets/mobile/image-hero.jpg'
+        tabletSrc='assets/tablet/image-hero.jpg'
+        desktopSrc='assets/desktop/image-hero.jpg'
+        alt='hero image'
+      />
       <ContentWrapper>
         <Title>modern art gallery</Title>
         <Description>
@@ -45,7 +54,7 @@ function HeaderSection(): JSX.Element {
         </Description>
         <Button path="location">OUR LOCATION</Button>
       </ContentWrapper>
-    </header>
+    </HeaderWrapper>
   );
 }
 

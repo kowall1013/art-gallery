@@ -16,7 +16,7 @@ const StyledButton = styled.button<StyledButtonProps>`
     `}
   padding: 24px 32px;
   background-color: ${({ secondary }) =>
-    secondary ? COLORS.primary : COLORS.secendary};
+    secondary ? COLORS.secendary : COLORS.primary};
   font-size: 2rem;
   font-weight: 800;
   border: none;
@@ -46,7 +46,7 @@ const StyledButton = styled.button<StyledButtonProps>`
     display: grid;
     place-items: center;
     background-color: ${({ secondary }) =>
-      secondary ? COLORS.secendary : COLORS.primary};
+      secondary ? COLORS.primary : COLORS.secendary};
     top: 0;
     right: ${({ secondary }) => (secondary ? 'auto' : 0)};
     left: ${({ secondary }) => (secondary ? 0 : 'auto')};
